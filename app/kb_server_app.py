@@ -6,7 +6,7 @@ Server Flask đơn giản chạy trên điện thoại để:
 - Cung cấp API search cho ResFes (chạy trên kính AR)
 
 Chạy trên Termux hoặc Pydroid:
-  python kb_server.py
+  python app/kb_server_app.py
 
 Server sẽ chạy trên: http://<phone-ip>:5001
 """

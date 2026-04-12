@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Change to project root directory (go up one level from scripts)
+cd "$(dirname "$0")/.."
+
 echo "================================================"
 echo "  ResFes AR - Quick Start"
 echo "================================================"
@@ -26,5 +29,6 @@ python3 -c "from flask import Flask; print('  ✓ Flask OK')" 2>/dev/null || {
 
 echo ""
 echo "Starting ResFes AR server..."
+echo "Current directory: $(pwd)"
 echo ""
-python3 resfes.py
+python3 app/resfes_app.py

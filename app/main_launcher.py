@@ -17,14 +17,16 @@ from kivy.uix.popup import Popup
 from kivy.uix.scrollview import ScrollView
 from kivy.uix.textinput import TextInput
 
-PROJECT_DIR = Path(__file__).resolve().parent
-RESFES_FILE = PROJECT_DIR / "resfes.py"
+PROJECT_DIR = Path(__file__).resolve().parent.parent  # Go up to ResFes_2026 root
+RESFES_FILE = PROJECT_DIR / "app" / "resfes_app.py"
 PORT = 5050
 
-# Shared data root for app manager + resfes.py + knowledge_base.py
+# Shared data root for app manager + resfes_app.py + knowledge_base.py
 DATA_DIR = Path(os.getenv("RESFES_DATA_DIR", str(PROJECT_DIR / "app_data"))).resolve()
 os.environ["RESFES_DATA_DIR"] = str(DATA_DIR)
 
+# Add app directory to path for imports
+sys.path.insert(0, str(PROJECT_DIR / "app"))
 import knowledge_base as kb
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -126,6 +128,8 @@ class ResFesManager(BoxLayout):
         env = os.environ.copy()
         env["RESFES_DATA_DIR"] = str(DATA_DIR)
         env["RESFES_KB_MODE"] = "local"
+        # Add app directory to Python path
+        env["PYTHONPATH"] = str(PROJECT_DIR / "app") + ":" + env.get("PYTHONPATH", "")
         return env
 
     def start_server(self):
@@ -134,7 +138,7 @@ class ResFesManager(BoxLayout):
             return
 
         if not RESFES_FILE.exists():
-            self._update_status("Server error: resfes.py not found")
+            self._update_status("Server error: resfes_app.py not found")
             return
 
         self.proc = subprocess.Popen(
@@ -142,7 +146,7 @@ class ResFesManager(BoxLayout):
             cwd=str(PROJECT_DIR),
             env=self._env_for_resfes(),
         )
-        self._update_status("Server: launching resfes.py...")
+        self._update_status("Server: launching resfes_app.py...")
 
     def stop_server(self):
         if not self.proc or self.proc.poll() is not None:

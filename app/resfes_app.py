@@ -1,5 +1,5 @@
 """
-resfes.py — ResFes AR Learning (ALL-IN-ONE)
+resfes_app.py — ResFes AR Learning (ALL-IN-ONE)
 ============================================
 Demo trên điện thoại, sẵn sàng chuyển lên kính AR thật.
 
@@ -10,10 +10,10 @@ Kiến trúc:
 
 Chạy:
     pip install flask flask-cors groq python-dotenv
-    python resfes.py
+    python app/resfes_app.py
 
 Mở điện thoại (cùng WiFi):
-    http://<IP_máy_tính>:5000
+    http://<IP_máy_tính>:5050
 
 Khi lên kính AR thật:
     - Thêm ssl_context để dùng HTTPS (camera yêu cầu HTTPS ngoài localhost)
@@ -29,9 +29,13 @@ from groq import Groq
 from dotenv import load_dotenv
 import knowledge_base as kb  # Fallback local KB
 
-load_dotenv()
+# Load .env from config directory
+env_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "config", ".env")
+load_dotenv(env_path)
 
-app    = Flask(__name__)
+# Point Flask to the correct template directory
+template_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "frontend", "templates")
+app    = Flask(__name__, template_folder=template_dir)
 CORS(app)
 client = Groq(api_key=os.getenv("GROQ_API_KEY", ""))
 PORT   = 5000

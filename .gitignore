@@ -1,5 +1,86 @@
+# Virtual Environments
 venv/
+venv_test/
+env/
+ENV/
+
+# Environment Variables & Secrets
 .env
+.env.local
+.env.*.local
+config/.env
+
+# SSL/TLS Certificates (sensitive, regenerate locally)
+*.pem
+*.key
+*.crt
+cert.pem
+key.pem
+
+# Python Cache & Compiled Files
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+*.egg
+dist/
+build/
+
+# Database Files (contain user data)
+*.db
+*.sqlite
+*.sqlite3
+knowledge.db
+
+# IDE & Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Logs & Temp Files
+logs/
+*.log
+*.tmp
+temp/
+.cache/
+
+# Node (if frontend uses npm)
+node_modules/
+package-lock.json
+yarn.lock
+
+# Distribution
+dist/
+build/
+*.tar.gz
+*.zip
+
+# IDE Workspace
+*.workspace
+.project
+.classpath
+
+# Python Linting
+.pylint
+.coverage
+htmlcov/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Misc
+.env.prod
+secrets/
+private/
 References/

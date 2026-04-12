@@ -1,7 +1,12 @@
 @echo off
+REM Change to project root directory (script is in scripts\ subfolder)
+cd /d "%~dp0.."
+
 echo ================================================
 echo   ResFes AR - Quick Start
 echo ================================================
+echo.
+echo Current directory: %cd%
 echo.
 echo Checking dependencies...
 python -c "from OpenSSL import crypto; print('  + pyOpenSSL OK')" 2>nul || (
@@ -37,11 +42,11 @@ echo   IMPORTANT: Camera Debug Instructions
 echo ================================================
 echo.
 echo 1. Server will start on HTTPS (required for camera)
-echo 2. Open in browser: https://YOUR_IP:5000
+echo 2. Open in browser: https://YOUR_IP:5050
 echo 3. ACCEPT certificate warning (Advanced ^> Proceed)
 echo 4. RELOAD page after accepting certificate
 echo.
-echo For debug/testing, use: https://YOUR_IP:5000/test
+echo For debug/testing, use: https://YOUR_IP:5050/test
 echo.
 echo If camera permission not requested, see:
 echo    DEBUG_CAMERA.md
@@ -50,4 +55,5 @@ echo ================================================
 echo.
 echo Starting ResFes AR server...
 echo.
-python resfes.py
+python app\resfes_app.py
+pause
