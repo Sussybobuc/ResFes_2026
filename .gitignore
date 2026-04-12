@@ -2,9 +2,4 @@ venv/
 .env
 __pycache__/
 *.pyc
-<<<<<<< HEAD
 References/
-=======
-cert.pem
-key.pem
->>>>>>> 8950bd71af13e12e0bb40db1310787a10087677a
